@@ -1,0 +1,164 @@
+\chapter{Introduction}
+
+The rapid advancement of semiconductor technology has led to a growing demand for high-performance and reliable integrated circuits. In modern semiconductor fabrication, defect detection and classification play a critical role in maintaining production efficiency and ensuring product reliability. Despite the availability of advanced inspection systems, the increasing complexity and variability of defect patterns continue to pose significant challenges to conventional approaches. Although deep learning techniques have demonstrated promising results in automated defect analysis, their deployment in real-world environments is often constrained by high computational requirements and limited interoperability across platforms. This has led to increasing interest in lightweight, edge-deployable solutions that can operate efficiently in resource-constrained and heterogeneous environments. 
+
+
+\section{Background of Defect Classes}
+\subsection{Semiconductor Manufacturing Overview}
+Semiconductor manufacturing is a highly complex, multi-stage process used to fabricate integrated circuits (ICs) on silicon wafers. It involves repeated cycles of deposition, lithography, etching, doping, and polishing are performed with nanometer-scale precision.
+
+Each wafer undergoes hundreds of processing steps in a clean room environment. Even extremely small variations in process conditions can lead to defects that affect circuit functionality.
+
+\subsection{What are Wafer Defects and Why They Occur}
+Wafer defects refer to unwanted irregularities or anomalies that occur on the surface or within the semiconductor wafer during fabrication. These defects can arise due to:
+\begin{itemize}
+\item Particle Containment in clean rooms
+\item Equipment malfunction or calibration errors
+\item Process variation (temperature, pressure, timing)
+Material imperfections in silicon wafers
+\end{itemize}
+
+\subsection{Types of Defects}
+\begin{itemize}
+     \item \textbf{Structural Defects:}
+    These are physical damages to the wafer surface.
+
+    Examples:
+    \begin{itemize}
+        \item Scratches
+        \item Cracks
+        \item Breaks in the wafer surface
+    \end{itemize}
+    Characteristics:
+        \begin{itemize}
+            \item Often caused by handling or mechanical stress
+            \item Visible in imaging systems
+            \item May affect entire circuit functionality
+        \end{itemize}
+      \item \textbf{Contamination Defects:}
+        These are foreign particles or residues on wafer surface.
+        Examples:
+    \begin{itemize}
+        \item Dust particles
+        \item Chemical residues
+        \item Metallic contamination
+    \end{itemize}
+    Characteristics:
+        \begin{itemize}
+            \item Usually random in distribution
+            \item Can be very small but still impactful
+            \item Often introduced during cleaning or processing steps
+        \end{itemize}
+
+        \item \textbf{Pattern-Related Defects:}
+        These defects arise when the intended geometric layout of the integrated circuit is incorrectly formed, leading to deviations from the designed pattern.
+        Examples:
+    \begin{itemize}
+        \item Bridging (unwanted connection between circuit lines)
+        \item Open circuits (break in expected pattern)
+        \item Misalignment of patterns
+        \item Missing or extra pattern features
+    \end{itemize}
+    Characteristics:
+        \begin{itemize}
+            \item Occur during lithography or etching steps
+            \item Directly affect circuit behavior
+            \item Harder to detect visually compared to structural defects
+        \end{itemize}
+\end{itemize}
+
+\subsection{Traditional Inspection Methods}
+\begin{itemize}
+     \item \textbf{Optical Inspection Systems:}
+     Automated machines using high-resolution cameras and laser-based imaging to scan wafers.
+     \begin{itemize} How they work:
+     \item Capture wafer images
+     \item Compare with reference patterns or neighboring dies
+     \item Flag deviations as defects
+     \end{itemize}
+      \begin{itemize} Limitations:
+      \item High cost
+      \item Sensitive to noise
+      \item Struggles with complex patterns in advanced nodes
+      \item Requires post-processing interpretation
+      \end{itemize}
+
+     \item \textbf{Manual Classification:}  
+       Here human experts visually inspect wafer maps or microscope images to identify defect types.
+       \begin{itemize} Limitations:
+           \item Time-consuming
+           \item Subjective (depends on expert experience)
+            \item Not scalable for high-volume production
+            \item Inconsistent labeling across engineers
+       \end{itemize}
+\end{itemize}
+Due to the limitations of traditional inspection methods, there has been a significant shift toward automated defect classification using machine learning and deep learning techniques. These approaches aim to improve accuracy, scalability, and real-time decision-making in semiconductor manufacturing environments.
+
+\begin{definition}\label{abc}
+Some definition....
+\end{definition}
+
+\begin{theorem}
+Some theorem.......
+\end{theorem}
+
+\begin{proof}
+Proof is as follows....
+\end{proof}
+
+
+\begin{corollary}
+A corollary to the theorem is....
+\end{corollary}
+
+\begin{remark}
+Some remark.......
+\end{remark}
+
+
+You may have to type many equations inside the text.  The equation can be typed as below.
+\begin{equation}\label{eqn1}
+f(x) = \frac{x^2-5x+2}{e^x - 2} = {y^5-3 \over e^x-2} %\nonumber
+\end{equation}
+
+This can be referred as (\ref{eqn1}) and so on.....
+
+You may have to type a set of equations.  For this you may proceed as given below.
+\begin{eqnarray}
+f(x) &=& e^{1+2(x-a)} + \ldots   \nonumber   \\
+  &=& \log(x+a) + \sin(x+y) + \cdots  \label{eqn2}
+\end{eqnarray}
+
+% Note: \nonumber will suppress the eqn number in the above.  
+% You can type comments like this starting with % as here.
+
+You may have to cite the articles.  You may do so as \cite{golub} and so on.....
+Note that you have already created the `bib.bib' file and included the entry with the above name. Only
+then you can cite it as above.  
+
+\section{Section-2 Name}
+\begin{definition}\label{abc}
+Some definition....
+\end{definition}
+
+\begin{remark}
+Some remark.......
+\end{remark}
+
+\subsection{Subsection name}
+
+\begin{theorem}
+Some theorem.......
+\end{theorem}
+
+\begin{proof}
+Proof is as follows....
+\end{proof}
+
+
+\begin{figure}[h]
+
+[The figure will be displayed here.]
+
+\caption{The correlation coefficient as a function of $\rho$}
+\end{figure}
