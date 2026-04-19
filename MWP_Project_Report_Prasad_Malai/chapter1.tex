@@ -76,7 +76,8 @@ Material imperfections in silicon wafers
      \item Compare with reference patterns or neighboring dies
      \item Flag deviations as defects
      \end{itemize}
-      \begin{itemize} Limitations:
+      Limitations:
+      \begin{itemize} 
       \item High cost
       \item Sensitive to noise
       \item Struggles with complex patterns in advanced nodes
@@ -85,7 +86,8 @@ Material imperfections in silicon wafers
 
      \item \textbf{Manual Classification:}  
        Here human experts visually inspect wafer maps or microscope images to identify defect types.
-       \begin{itemize} Limitations:
+       Limitations:
+       \begin{itemize} 
            \item Time-consuming
            \item Subjective (depends on expert experience)
             \item Not scalable for high-volume production
@@ -94,71 +96,88 @@ Material imperfections in silicon wafers
 \end{itemize}
 Due to the limitations of traditional inspection methods, there has been a significant shift toward automated defect classification using machine learning and deep learning techniques. These approaches aim to improve accuracy, scalability, and real-time decision-making in semiconductor manufacturing environments.
 
-\begin{definition}\label{abc}
-Some definition....
-\end{definition}
+\section{Importance of defect classifiction}
+Defect classification plays a critical role in modern semiconductor manufacturing, directly impacting product quality, manufacturing yield, and process automation. As device geometries shrink and fabrication complexity increases, accurate and efficient defect analysis becomes essential.
 
-\begin{theorem}
-Some theorem.......
-\end{theorem}
+\subsection {Quality Improvement}
 
-\begin{proof}
-Proof is as follows....
-\end{proof}
+Defect classification ensures that only wafers meeting stringent quality standards proceed to packaging and deployment. By identifying and categorizing defects (such as scratches, contamination, or pattern irregularities), manufacturers can:
+\begin{itemize}
+\item Detect faulty dies early in the production cycle
+\item Prevent defective chips from reaching customers
+\item Maintain reliability in high-performance applications (e.g., automotive, medical, aerospace systems)
+\end{itemize}
 
+This is especially crucial in safety-critical domains like automotive embedded systems, where even minor defects can lead to system failures.
 
-\begin{corollary}
-A corollary to the theorem is....
-\end{corollary}
+\subsection {Yield Enhancement}
 
-\begin{remark}
-Some remark.......
-\end{remark}
+Yield refers to the percentage of functional chips produced from a wafer. Defect classification directly contributes to yield improvement by:
+\begin{itemize}
+\item Identifying recurring defect patterns linked to specific process steps
+\item Enabling root cause analysis (e.g., lithography errors, etching issues)
+\item Reducing scrap rates and rework costs
+\end{itemize} 
 
+By analyzing defect trends over time, manufacturers can optimize fabrication parameters and significantly increase the number of usable chips per wafer, leading to higher profitability.
 
-You may have to type many equations inside the text.  The equation can be typed as below.
-\begin{equation}\label{eqn1}
-f(x) = \frac{x^2-5x+2}{e^x - 2} = {y^5-3 \over e^x-2} %\nonumber
-\end{equation}
+\subsection {Process Automation}
 
-This can be referred as (\ref{eqn1}) and so on.....
+Traditional defect inspection methods rely heavily on manual review, which is:
+\begin{itemize}
+\item Time-consuming
+\item Subject to human error
+\item Not scalable for high-volume production
+\end{itemize} 
 
-You may have to type a set of equations.  For this you may proceed as given below.
-\begin{eqnarray}
-f(x) &=& e^{1+2(x-a)} + \ldots   \nonumber   \\
-  &=& \log(x+a) + \sin(x+y) + \cdots  \label{eqn2}
-\end{eqnarray}
+Automated defect classification systems, especially those based on deep learning, enable:
+\begin{itemize}
+\item Real-time inspection and classification of wafer defects
+\item Consistent and objective decision-making
+\item Integration with smart manufacturing pipelines (Industry 4.0)
+\end{itemize} 
+Automation reduces dependency on human experts and allows fabs to operate efficiently at scale.
 
-% Note: \nonumber will suppress the eqn number in the above.  
-% You can type comments like this starting with % as here.
+\subsection {Cost Reduction}
 
-You may have to cite the articles.  You may do so as \cite{golub} and so on.....
-Note that you have already created the `bib.bib' file and included the entry with the above name. Only
-then you can cite it as above.  
+Accurate defect classification minimizes:
+\begin{itemize}
+\item Material wastage
+\item Rework and repair costs
+\item Downtime due to unidentified process issues
+\end{itemize}
+Early detection and classification prevent defects from propagating through multiple stages, saving significant operational costs.
 
-\section{Section-2 Name}
-\begin{definition}\label{abc}
-Some definition....
-\end{definition}
+\subsection {Data-Driven Manufacturing}
 
-\begin{remark}
-Some remark.......
-\end{remark}
+Defect classification generates valuable data that can be used for:
+\begin{itemize}
+\item Predictive maintenance of equipment
+\item Statistical process control (SPC)
+\item Continuous process improvement
+\end{itemize} 
 
-\subsection{Subsection name}
+This enables a shift from reactive to proactive manufacturing strategies.
+\section {Limitations and Motivation}
+\subsection {Limitation with current approach }
+\begin{itemize}
+\item High-performing deep learning models (e.g.InceptionNet (GoogLeNet), DenseNet ) are computationally expensive
+\item Dependence on cloud-based processing, leading to latency and bandwidth issues
+\item Limited suitability for real-time defect detection in high-throughput manufacturing
+\item Black-box nature of models reduces trust in critical manufacturing decisions
+\item Poor generalization across fabrication environments
+\item Heavy reliance on large labeled datasets
+\item Traditional methods lack robustness, while deep models lack efficiency
+\end{itemize} 
 
-\begin{theorem}
-Some theorem.......
-\end{theorem}
+\subsection {Motivation for Using Edge AI}
+\begin{itemize}
+\item Enables real-time defect classification directly on inspection machines
+\item Reduces latency by avoiding cloud communication
+\item Minimizes network bandwidth usage (important for high-resolution wafer images)
+\item Improves data privacy and security (sensitive manufacturing data stays on-site)
+\item Supports scalable deployment across multiple inspection units in fabs
+\item Allows integration with Industry 4.0 smart manufacturing pipelines
+\end{itemize}
 
-\begin{proof}
-Proof is as follows....
-\end{proof}
-
-
-\begin{figure}[h]
-
-[The figure will be displayed here.]
-
-\caption{The correlation coefficient as a function of $\rho$}
-\end{figure}
+In conclusion, as semiconductor manufacturing moves towards fully automated and intelligent systems, the role of efficient and explainable defect classification becomes increasingly important. The convergence of Edge AI and interpretable deep learning offers a promising direction to achieve real-time, reliable, and scalable solutions. This work is driven by the vision of enabling practical, trustworthy AI systems that can be seamlessly integrated into next-generation smart manufacturing environments.

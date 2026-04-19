@@ -1,0 +1,121 @@
+\chapter{Literature Overview}
+
+The semiconductor manufacturing industry is a continuously evolving sector in which defect detection and classification play a crucial role. Accurate and cost-effective inspection systems that can identify and classify semiconductor defects at an early stage of the manufacturing process are essential for improving productivity, yield, and revenue in this market sector.
+
+In the early stages of the industry, when manufacturing processes were less automated, human operators performed manual inspections because defects appearing on wafers were relatively larger and easier to identify. However, as semiconductor feature sizes continued to shrink, defects also became smaller and more complex, making manual inspection increasingly challenging. This created the need for alternative and more reliable inspection methods. The growth of computer vision techniques and advancements in microscopy technologies significantly contributed to addressing this challenge.
+
+The resolution limit for defect detection is defined as the minimum distance at which two separate structures can be distinguished as distinct objects. For Scanning Electron Microscopy (SEM), with appropriate settings, the resolution can reach approximately 1–10 nm. Such improvements in imaging resolution allow significantly more information to be extracted from wafer images, leading to enhanced performance in defect detection and classification tasks.
+
+Initially, machine learning (ML)-based approaches appeared promising for semiconductor defect classification. These methods included algorithms such as Support Vector Machines (SVM), Decision Trees (DT), and K-Nearest Neighbors (K-NN). However, traditional ML approaches require large volumes of labeled training data and careful manual feature engineering. Since model performance heavily depends on the quality of selected features, there was a growing need for more advanced alternatives. One such alternative is Deep Learning (DL).
+
+Deep learning offers several advantages over conventional machine learning for this problem domain. Unlike ML methods, deep learning models can automatically learn hierarchical feature representations directly from raw image data, reducing the need for manual feature extraction. They are highly effective in handling complex patterns, subtle defects, and large-scale datasets. Furthermore, Convolutional Neural Networks (CNN) have shown superior performance in image classification tasks, making them particularly suitable for semiconductor defect inspection.
+
+\section{Initial Work}
+\subsection{Deep Learning Model for Automated Visual Inspection of Electronic Boards(PCBs)}
+In this context, José Antonio Lara-Chávez, Carlos Avilés-Cruz, and Miguel Magos-Rivera proposed a deep learning framework titled Deep Learning Model for Automated Visual Inspection of Electronic Boards, published in the Journal of Intelligent Manufacturing. Although the study focuses on Printed Circuit Board (PCB) assembly inspection, its methodology is highly relevant to semiconductor defect classification, as both applications involve image-based quality inspection of miniature components and subtle defect patterns.
+
+The proposed model consists of three sequential stages: segmentation, feature extraction, and classification. In the first stage, Mask R-CNN was employed to detect and isolate the PCB region from the input image, ensuring that irrelevant background information does not affect the classification process. In the second stage, the authors introduced a Coarse-Medium-Fine feature extraction strategy using parallel CNN branches inspired by the human visual system. This design captures large structural information, medium-level patterns, and fine defect details simultaneously. Finally, a fully connected neural network was used to classify the boards into one normal class and five defect classes.
+
+The model was trained and evaluated using a proprietary dataset containing 2,376 RGB images representing various PCB assembly defects such as missing integrated circuits, reversed polarity components, incorrect resistor values, and misplaced devices. Experimental results reported 100% classification accuracy during training and evaluation, while real-time implementation tests achieved 98.33% practical accuracy.
+
+This work demonstrates that CNN-based hierarchical feature extraction is highly effective for detecting subtle manufacturing defects under real-world conditions. The study also confirms the potential of automated inspection systems to replace manual quality control processes.
+
+However, despite its strong performance, the proposed framework relies on computationally intensive architectures such as Mask R-CNN and multiple parallel CNN branches, requiring high-end GPU hardware for training and deployment. In addition, the work does not address model interpret-ability, which is important in safety-critical industrial environments where engineers must verify model decisions. Furthermore, the study focuses on PCB assembly defects rather than semiconductor wafer defect patterns.
+
+\subsection{Effective and Lightweight Surface Defect Detection via Enhanced Deep Learning Models}
+Surface defect detection plays a crucial role in industrial quality assurance, particularly in manufacturing sectors such as steel, semiconductors, electronics, and automotive production. Conventional defect inspection methods based on manual observation or classical image processing often suffer from low accuracy, poor adaptability to varying conditions, and limited robustness when defect patterns become subtle or complex. These limitations have motivated industries to adopt machine learning and deep learning-based automated inspection systems.
+In a recent study, an enhanced defect detection framework was proposed by integrating EfficientNet-B0 with YOLOv8 for steel surface defect detection. The objective of the work was to improve detection efficiency while reducing computational resource consumption, thereby enabling practical deployment in industrial environments.
+The study utilized the widely recognized NEU-DET dataset, developed by Kechen Song et al., containing 1,800 grayscale images across six common steel surface defect categories:
+\begin{itemize}
+\item Crazing
+\item Inclusion
+\item Patches
+\item Pitted surface
+\item Rolled-in scale
+\item Scratches
+\end{itemize}
+
+To improve model robustness, the authors applied data augmentation techniques such as:
+\begin{itemize}
+\item Rotation
+\item Flipping
+\item Scaling
+ \item Contrast adjustment
+\end{itemize}
+
+These methods increased defect variability and reduced overfitting during training.
+The proposed architecture replaces the original YOLOv8 backbone with EfficientNet-B0. Input images first pass through Mobile Bottleneck Convolution (MBConv) blocks for efficient feature extraction. Multi-scale feature fusion and detection heads are then used to identify defects of varying sizes. This design significantly improves detection of small and low-resolution defects while maintaining a lightweight structure.
+The model was trained for 300 epochs and compared against baseline YOLOv8 trained for 200 epochs.
+
+Experimental results demonstrated substantial improvement:
+\begin{itemize}
+ \item Baseline YOLOv8 mAP@0.5 = 0.964
+ \item Improved YOLOv8 + EfficientNet-B0 mAP@0.5 = 0.993
+\end{itemize}
+Class-wise performance also improved considerably, particularly for difficult classes such as:
+\begin{itemize}
+ \item Crazing (+8.7 percent)
+ \item Pitted surface (+5.2 percent)
+\end{itemize}
+
+These findings indicate that lightweight backbone optimization can significantly enhance defect detection performance without increasing computational burden.
+This work is highly relevant to the present research because it demonstrates that combining lightweight CNN architectures with efficient detection frameworks can provide high accuracy and practical deployability. Similar challenges exist in semiconductor defect classification, where defect patterns are often small, low-contrast, and highly varied.
+
+\section{Recent work}
+A recent study investigated the use of Vision Transformers (ViTs), specifically the DinoV2 model, for automated semiconductor defect classification using Scanning Electron Microscope (SEM) images. 
+The researchers used more than 7,400 real defect images collected from two wafer inspection layers covering 11 defect categories. Initially, pretrained DinoV2 features combined with a k-nearest neighbors 
+classifier achieved strong results, showing effective defect representation even without task-specific training. Further improvement was obtained through transfer learning, where the model reached over
+ 90 percent classification accuracy using only a small number of labeled samples per defect class. Semi-supervised learning with pseudo-labeling also provided additional gains. The study demonstrated that 
+ transformer-based models are highly effective for semiconductor defect inspection, particularly in scenarios with limited labeled data, though their higher computational complexity may limit deployment 
+ on edge devices.
+ \subsection{Summary of Existing Research Approaches}
+ Existing Methods Focused Mainly On:
+ \begin{itemize}
+ \item CNN-based defect classification with high accuracy using centralized GPUs/cloud systems.
+ \item Transformer and Generative AI frameworks improving feature learning for subtle defects.
+ \item Ensemble and hybrid models increasing classification performance.
+ \item Machine learning surveys showing strong progress in wafer defect recognition.
+ \item Lightweight CNN attempts like SqueezeNet / low-complexity CNN for faster classification.
+ \end{itemize}
+
+\section{Research gap}
+Key Research Gaps in Existing Literature
+\subsection{Accuracy Priority Over Deployability}
+
+Most prior work focuses on maximizing classification accuracy, but:
+\begin{itemize}
+     \item High-parameter models need GPU servers
+     \item High inference latency in production lines
+     \item Difficult to deploy directly on inspection machines
+     \item Increased hardware cost
+ \end{itemize}
+
+ \subsection{Limited Edge AI Adoption}
+ Most models are trained/tested in:
+ \begin{itemize}
+     \item Cloud environments
+     \item Workstations
+     \item Kaggle / lab systems
+\end{itemize}
+
+Very few studies address:
+ \begin{itemize}
+     \item On-device inference
+     \item Low-power processors
+     \item Industrial embedded boards
+     \item Local real-time inspection nodes
+\end{itemize}
+
+\subsection{Very few studies address actual industry needs as:}
+ \begin{itemize}
+     \item Lack of Explainability / Trust
+     \item Many deep learning systems behave as black boxes.
+     \item In semiconductor fabs, engineers need: Why was wafer rejected?, Which defect region?,influenced decision?
+     \item Is model focusing on actual scratch or noise?
+\end{itemize}
+
+\section{Conclusion}
+Although prior studies have achieved promising accuracy in semiconductor defect classification using CNNs, transformers, and ensemble learning, limited attention has been given to deployable, 
+low-latency, and interpretable solutions suitable for real-time industrial environments. Most existing approaches rely on computationally intensive centralized systems and provide limited transparency 
+in decision-making. Therefore, there is a need for an efficient Edge AI-based framework using lightweight deep learning models integrated with explainability techniques to enable practical, trustworthy, 
+and scalable semiconductor defect classification.
