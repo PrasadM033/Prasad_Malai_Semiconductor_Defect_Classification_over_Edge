@@ -1,8 +1,8 @@
-\chapter{Problem Statement and overview}
+\chapter{Problem Statement \& Research overview}
 
 \section{Problem Statement}
 Semiconductor fabrication facilities generate massive volumes of high-resolution wafer and die inspection images, where early and accurate identification of defects is essential for maintaining yield, reliability, and cost efficiency. While automated optical inspection systems are widely used for defect detection, the subsequent defect classification stage frequently relies on centralized cloud servers or manual expert analysis.
-This dependency creates several bottlenecks, such as communication latency, network bandwidth limitations, privacy concerns related to sensitive manufacturing data, and increased operational costs. Furthermore, these issues hinder the deployment of real-time intelligent inspection systems in advanced semiconductor manufacturing lines.
+This dependency creates several bottlenecks, such as communication latency, network bandwidth limitations, privacy concerns related to sensitive manufacturing data, and increased operational costs. Additionally, these issues hinder real-time inspection in semiconductor manufacturing lines.
 Hence, there is a critical need for an Edge-AI-enabled defect classification framework that can execute directly on low-power edge hardware with limited memory and computational resources. The proposed system should deliver high classification performance with reduced latency and optimized resource utilization, enabling practical and scalable deployment in semiconductor fabrication environments.
 
 \section{Objective}
@@ -10,7 +10,7 @@ Hence, there is a critical need for an Edge-AI-enabled defect classification fra
 To systematically compare selected deep learning models for semiconductor defect classification using multiple evaluation metrics such as Accuracy, Precision, Recall, F1-score, inference latency, and memory usage.
 In many research works, models are compared only using classification accuracy. However, for real-world semiconductor manufacturing systems, high accuracy alone is insufficient. A model must also be fast, lightweight, and efficient.
 
-Therefore, this objective focuses on creating a benchmark report that evaluates each candidate model (such as MobileNet, EfficientNet, ResNet, ShuffleNet, etc.) using:
+Therefore, this objective focuses on creating a benchmark report that evaluates each candidate model (such as MobileNet, ResNet, ShuffleNet, etc.) using:
 \begin{itemize}
 \item Accuracy: Overall percentage of correctly classified defect images.
 \item Precision: How many predicted defects are correctly identified.
@@ -26,7 +26,7 @@ Expected Outcome:
 A comparative table ranking all models and identifying the best trade-off between performance and efficiency.
 
 \subsection {Edge Deployment Feasibility Report}
-To quantitatively evaluate whether trained models can be practically deployed on low-resource edge devices such as Raspberry Pi.
+To evaluate the practical suitability of the trained models for deployment on low-resource edge devices, including platforms like the Raspberry Pi, using quantitative metrics.
 Although many deep learning models perform well on GPUs or cloud servers, they may fail on edge hardware because of:
 \begin{itemize}
 \item Low CPU power
@@ -41,7 +41,6 @@ Hence, following measurements are taken after deploying the model over Raspberry
 \item Real inference time per image
 \item CPU utilization
 \item RAM consumption
-\item Thermal behavior
 \item Frames per second (FPS)
 \item Accuracy drop after optimization (quantization/pruning)
 \end{itemize}
@@ -60,33 +59,34 @@ Industries increasingly require AI systems to be explainable and reliable. If th
 Hence, this objective evaluates:
 \begin{itemize}
 \item  Explainability Analysis: Grad-CAM and feature activation map
-\item  Bias Evaluation Across Defect Classes
+\item  Bias Evaluation: Across Defect Classes
 \item  Fairness Assessment: Ensure all defect categories receive balanced treatment.
 \end{itemize}
 
 \subsection  {Design Guidelines for Edge vs Cloud Deployment}
 
-To create practical recommendations on when semiconductor defect classification should run on Edge devices and when Cloud deployment is preferable.
+To develop recommendations that identify appropriate scenarios for deploying semiconductor defect classification on edge platforms versus cloud-based systems.
 
-Edge Deployment Suitable When:
+
+\subsubsection{Edge Deployment Suitable When:}
 \begin{itemize}
 \item Real-time response needed
-\item Low latency mandatory
-\item Internet unavailable
-\item Data privacy important
+\item Low latency is essential
+\item Internet unavailability or limited connectivity
+\item Data privacy 
 \item High-volume continuous inspection \newline
 Examples:\newline
-Production line instant reject decisions\newline
-Inline AOI machine classification \newline
+Instant reject/accept decision on production lines\newline
+Real time quality monitoring etc. \newline
 \end{itemize} 
-Cloud Deployment Suitable When:
+\subsubsection{Cloud Deployment Suitable When:}
 \begin{itemize}
 \item  Heavy model training required
 \item  Large storage needed
 \item  Historical analytics
 \item  Cross-fab monitoring
 \item  Retraining from global datasets
-Examples:\newline
-Weekly yield trend analysis\newline
-Model retraining \newline
 \end{itemize}
+Example use cases:\newline
+Weekly yield trend analysis\newline
+Model retraining etc.\newline

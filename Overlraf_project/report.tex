@@ -1,7 +1,9 @@
 \documentclass[12pt,a4wide]{report}
 
 \usepackage{amsthm,amssymb,mathrsfs,setspace,pstcol}%amsmath, latexsym,footmisc
+\usepackage{booktabs} % add this in preamble
 \usepackage[table]{xcolor}
+\usepackage{subcaption}
 \usepackage{makecell}
 \usepackage{float}
 %\usepackage{play}
@@ -56,7 +58,7 @@
                    {\large \bf  Bigdata \& Machine Learning} \\
                       \vspace{7mm}
                    {\em  by} \\ \vspace{2.5mm}
-             {\large \bf PRASAD MALAI]} \\
+             {\large \bf PRASAD MALAI} \\
 {\large \bf (Roll No. 2023MCS320002)}
 
 %\includegraphics[width=12cm, height=12cm]{iiserlogo}
@@ -140,10 +142,17 @@ award of any degree.
 {\Large{\bf{ABSTRACT}}}
 \end{center}
 
+\small
+Semiconductor defect classification is crucial in ensuring product quality and yield in modern semiconductor manufacturing processes. This work explores the feasibility
+of deploying edge AI–based solutions for accurate and efficient defect classification, addressing the challenges of limited computational resources and real-time inference requirements. A comparative study of lightweight convolutional neural network architectures, including MobileNetV2, ShuffleNet, and ResNet18, is conducted for multi-class defect classification.
 
-Semiconductor defect classification plays a crucial role in ensuring product quality and yield in modern manufacturing processes. This work explores the feasibility 
-of deploying edge AI–based solutions for accurate and efficient defect classification, addressing the challenges of limited computational resources and real-time inference requirements. A comparative study of convolutional neural network architectures, including MobileNetV2, ShuffleNet, and ResNet18, is conducted for multi-class defect classification.
-The models are trained and subsequently optimized for edge deployment using techniques such as model quantization and ONNX-based conversion, resulting in reduced latency and enhanced cross-platform portability. Model performance is evaluated in terms of classification accuracy, inference efficiency, and suitability for real-time edge deployment. To enhance interpretability, Gradient-weighted Class Activation Mapping (Grad-CAM) is employed to visualize the regions influencing model predictions. Quantitative evaluation of the Grad-CAM outputs is performed using metrics such as Mean Intersection over Union (IoU) and Activation Ratio, enabling assessment of localization quality. Experimental results demonstrate that ResNet18 achieves superior localization performance due to its deeper architecture, while MobileNetV2 and ShuffleNet offer a favorable trade-off between computational efficiency and accuracy. The findings highlight the importance of balancing model complexity and interpretability for responsible edge AI deployment in semiconductor defect classification.
+The models are trained and subsequently optimized for edge deployment using techniques such as model quantization and ONNX-based conversion, resulting in reduced latency and enhanced cross-platform portability. Model performance is evaluated in terms of classification accuracy, inference efficiency, and suitability for real-time edge deployment. To enhance interpretability, Gradient-weighted Class Activation Mapping (Grad-CAM) is employed to visualize the regions influencing model predictions. Quantitative evaluation of the Grad-CAM outputs is performed using metrics such as Mean Intersection over Union (IoU) and Activation Ratio, enabling assessment of localization quality.
+
+Experimental results demonstrate that ResNet18 achieves superior localization performance due to its deeper architecture, while MobileNetV2 and ShuffleNet offer a favorable trade-off between computational efficiency and accuracy. The findings highlight the importance of balancing model complexity and interpretability for responsible edge AI deployment in semiconductor defect classification.
+
+\normalsize
+\subsubsection{Keywords:} Edge Computing, Semiconductor Inspection, Scanning Electron Microscopy (SEM), Raspberry Pi, Quantization, Explainable AI, Grad-CAM
+
 
 \clearpage
 
@@ -153,10 +162,7 @@ The models are trained and subsequently optimized for edge deployment using tech
 \clearpage
 \listoffigures
 \listoftables
-
-
 \newpage
-
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
@@ -178,7 +184,7 @@ The models are trained and subsequently optimized for edge deployment using tech
 \input chapter6.tex
 
 \input chapter7.tex
-% \input chapter8.tex
+
 
 \nocite{11010396}\nocite{10212469}\nocite{10366092}\nocite{10253920}\nocite{10545494}\nocite{10825832}\nocite{10906541}\nocite{11100398}\nocite{11379858}\nocite{8634922}\nocite{8839832}\nocite{9728861}\nocite{lopez2021review}\nocite{10776716}
 \bibliographystyle{plain}

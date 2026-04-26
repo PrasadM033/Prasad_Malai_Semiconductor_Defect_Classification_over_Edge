@@ -2,10 +2,9 @@
 
 This chapter presents the methodology adopted for the development of the proposed Edge-AI-based semiconductor defect classification system. The objective of the system is to accurately classify semiconductor defects while satisfying practical deployment constraints such as low latency, reduced memory usage, and computational efficiency on resource-constrained edge devices.
 
-The overall methodology consists of dataset preparation, image pre-processing, data augmentation, lightweight model selection, transfer learning-based training, performance evaluation, model optimization, and deployment feasibility analysis on edge platforms. In addition, explainability and responsible AI assessment techniques are incorporated to ensure reliable and trustworthy model predictions.
+The overall approach includes preparing the dataset, applying image preprocessing and augmentation techniques, selecting suitable lightweight models, performing transfer learning-based training, evaluating performance, optimizing the models, and assessing their feasibility for deployment on edge devices. In addition, explainability and responsible AI assessment techniques are incorporated to ensure reliable and trustworthy model predictions.
 
-The complete workflow of the proposed system is illustrated in Figure 3.1.
-
+The complete workflow of the proposed system is illustrated in Figures 4.3 and 4.4 
 \section{Data collection and Preparation}
 
 The performance of any deep learning–based defect classification system is highly dependent on the quality, diversity, and representativeness of the training dataset. In semiconductor manufacturing, obtaining large-scale labeled defect datasets is a major challenge due to intellectual property restrictions, confidentiality agreements, limited public release of fab inspection data, and the high cost of expert annotation. As a result, publicly available semiconductor image datasets often contain limited defect categories, low sample counts, or incomplete metadata.
@@ -16,58 +15,57 @@ To address these practical constraints, a hybrid dataset generation strategy was
 Since access to proprietary industrial semiconductor datasets was not available, the dataset used in this research was developed from two complementary sources:
 
 \subsubsection{Public Semiconductor Defect Datasets}
-Publicly available semiconductor inspection datasets were explored to obtain real defect image samples representing defects observed during wafer or die inspection. These datasets provided realistic defect textures, process noise characteristics, and manufacturing variations that are difficult to manually reproduce.
-Public datasets were used primarily to capture:
+Publicly available semiconductor inspection datasets were explored to obtain real defect image samples representing defects observed during wafer or die inspection. These datasets offer realistic representations of defect textures, process-induced noise, and manufacturing variations that are challenging to replicate manually. Publicly available datasets were primarily utilized to capture the following characteristics:
+
 \begin{itemize}
-\item Real inspection image characteristics
-\item Practical background noise
-\item Irregular defect boundaries
-\item Real-world imaging conditions
+\item Authentic inspection image properties
+\item Practical background noise conditions
+\item Irregular and complex defect boundaries
+\item Real-world imaging environments
 \item Variations in illumination and contrast
 \end{itemize}
 
 \subsubsection{Synthetic Defect Image Generation}
-Due to the limited number of publicly available labeled samples for certain defect classes, synthetic images were generated to supplement the dataset. Artificial defect patterns were created using geometric structures, shape distortions, line interruptions, cracks, and conductive path abnormalities resembling semiconductor layout defects.
+Due to the limited availability of publicly labeled data, a synthetic dataset was generated to supplement the existing dataset. Artificial defect patterns were created using geometric structures, shape distortions, line interruptions, cracks, and conductive path abnormalities resembling semiconductor layout defects.
 Synthetic data generation helped overcome:
 \begin{itemize}
-    \item Small sample size
+    \item Limited sample size
     \item Missing defect classes
-    \item Severe class imbalance
-    \item Limited diversity in pattern orientation and scale
+    \item Handle class imbalance
+    \item Limited diversity in pattern scale and orientation.
 \end{itemize}
 
 \subsection{Defect Classes Considered}
-The proposed dataset was constructed using five representative semiconductor defect classes relevant to lithography, interconnect, and layout inspection tasks.
+The chosen dataset focuses on defects relevant to lithography, interconnect structures, and layout inspection processes.
 
 \subsubsection{LER (Line Edge Roughness)}
-LER refers to irregular or rough edges along patterned semiconductor lines caused by lithography or etching process variations. Excessive edge roughness may degrade device performance and dimensional accuracy.
+This defect is characterized by irregular or rough edges along patterned semiconductor features, typically arising from variations in lithography or etching processes. Excessive edge roughness can negatively impact device performance and dimensional accuracy.
 
 \subsubsection{Crack}
 Crack defects represent visible fractures or discontinuities in material layers, lines, or structural regions. These defects can reduce reliability and may lead to open circuit failure.
 
 \subsubsection{Malformed Via}
-Malformed via defects occur when inter-layer connection holes are incorrectly shaped, partially formed, shifted, or deformed. Such defects can affect electrical connectivity between layers.
-
+This defect occurs when inter-layer connection holes are improperly formed, misaligned, partially developed, or deformed. Such irregularities can disrupt electrical connectivity between layers.
 \subsubsection{Open}
 Open defects represent broken conductive paths where current flow is interrupted due to missing metal connection or structural discontinuity.
 
 \subsubsection{Short}
 Short defects occur when two conductive regions become unintentionally connected, resulting in undesired electrical conduction.
 
-These five classes were selected because they cover both geometric and electrical failure modes commonly studied in semiconductor inspection systems.
+These five classes were selected as they represent both geometric and electrical failure modes commonly encountered in semiconductor inspection systems.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{Intro_Defect_types.png}
-    \caption{Defect types}
+    \caption{Semiconductor defects}
     \label{fig:gradcam}
 \end{figure}
 
 \subsection{Data Challenges}
-During dataset preparation, several practical challenges were identified.
+Before model development, several challenges were encountered, including:
 \subsubsection{Class Imbalance}
 
-Some defect categories had fewer available samples than others. For example, crack and malformed via images were less common than open or short patterns. Such imbalance may bias the model toward majority classes.
+Certain defect classes have more /less samples compared to others. For instance, crack and malformed via defects were less frequent than open or short patterns. This imbalance can bias the model toward majority classes, potentially affecting its generalization performance.
 
 \subsubsection{Limited Access to Real Industrial Data}
 
@@ -88,7 +86,7 @@ Defects may vary significantly in:
 This increases classification difficulty and requires robust preprocessing and augmentation techniques.
 
 \subsection{Data Pre-processing}
-Before model training, all collected images were preprocessed into a consistent format suitable for convolutional neural networks.
+Prior to model training, all collected images were transformed into a standardized format to ensure compatibility with convolutional neural network architectures.
 
 \subsubsection {Image Resizing}
 
@@ -98,12 +96,12 @@ Images originally collected from different sources contained varying resolutions
 
 This size was selected because it is the standard input dimension for many ImageNet-pretrained models such as MobileNet, ResNet, and EfficientNet.
 
-Benefits include:
+It has few benefits as:
 \begin{itemize}
-\item Uniform tensor dimensions
-\item Faster batch processing
-\item Lower memory usage
-\item Compatibility with transfer learning models
+\item Uniform tensor dimension
+\item Fast batch processing
+\item Lower memory footprint
+\item Compatibility with transfer learning approach
 \end{itemize}
 
 \subsubsection {Normalization}
@@ -157,32 +155,34 @@ Used during training to tune hyperparameters, monitor overfitting, and select th
 
 Used only after training completion to measure final generalization performance on unseen data.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 
-\begin{minipage}{0.48\textwidth}
+\begin{subfigure}{0.48\textwidth}
     \centering
     \includegraphics[width=\linewidth]{Dataset_Distribution.png}
-    \caption*{(a) Chart of Dataset distribution}
-\end{minipage}
+    \caption{Dataset distribution}
+\end{subfigure}
 \hfill
-\begin{minipage}{0.48\textwidth}
+\begin{subfigure}{0.48\textwidth}
     \centering
     \includegraphics[width=\linewidth]{Dataset_Stat.png}
-    \caption*{(b) Dataset Statistics}
-\end{minipage}
+    \caption{Dataset statistics}
+\end{subfigure}
 
-\caption{Performance comparison using bar chart and statistical summary}
-\label{fig:bar_stats}
+\caption{Dataset Overview and Statistical Analysis summary}
 \end{figure}
-A typical split ratio used in this work was:
 
-Training Set: 90%
-Validation Set: 05%
-Test Set: 05%
+A split ratio used for this work:-
+
+\begin{tabular}{ll}
+Training Set:   & 90\% \\
+Validation Set: & 05\% \\
+Test Set:       & 05\%
+\end{tabular}
 
 \subsection{Summary}
-Due to the limited availability of real industrial semiconductor defect datasets, a hybrid dataset strategy combining public and synthetic samples was adopted. Five important defect classes were considered. Pre-processing, normalization, augmentation, and systematic train-validation-test splitting were performed to ensure robust model training and reliable evaluation of the proposed Edge-AI framework.
+Owing to the limited availability of real industrial semiconductor defect datasets, a hybrid data strategy was employed, combining both public and synthetically generated samples. Five key defect classes were considered in this study. The dataset was subjected to preprocessing, normalization, augmentation, and a structured train–validation–test split to support robust model training and reliable evaluation of the proposed Edge-AI framework.
 
 \section{Model Architecture and Training Methodology}
 
@@ -196,21 +196,21 @@ Due to the limited availability of real industrial semiconductor defect datasets
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{End_to_End_Pipeline.png}
-    \caption{End to End Pipeline}
+    \caption{End to End defect classification Pipeline}
     \label{fig:End to End Pipeline}
 \end{figure}
 
-Selecting an appropriate deep learning architecture is a critical step in the development of an Edge-AI–based semiconductor defect classification system. In practical deployment environments, the model must not only achieve high classification accuracy but also satisfy hardware constraints such as low memory usage, reduced computational complexity, and fast inference speed.
+Selecting an appropriate deep learning CNN architecture is a critical step in the development of an Edge-AI–based semiconductor defect classification system. In practical deployment environments, the model must not only achieve high classification accuracy but also satisfy hardware constraints such as low memory usage, reduced computational complexity, and fast inference speed.
 
-Therefore, this work focuses on lightweight and edge-deployable convolutional neural network (CNN) architectures that are suitable for deployment on embedded platforms such as Raspberry Pi and similar low-power devices. To establish a balanced comparison, three architectures were selected: MobileNetV2, ShuffleNet, and ResNet18.
+Therefore, this work focuses on lightweight and edge-deployable convolutional neural network (CNN) architectures that are suitable for deployment on embedded platforms such as Raspberry Pi and similar low-power devices.To enable a meaningful comparison across different network characteristics, three convolutional neural network architectures were selected: MobileNetV2, ShuffleNet, and ResNet18. These models were chosen to represent varying trade-offs between computational efficiency and representational capacity.
 
-These models represent different design philosophies:
 \begin{itemize}
- \item MobileNetV2 – optimized for mobile and embedded devices using depthwise separable convolution
- \item ShuffleNet – highly efficient architecture designed for low-compute hardware
- \item ResNet18 – compact residual network used as a strong baseline model
+\item MobileNetV2 – designed for efficient execution on resource-constrained devices by employing depthwise separable convolutions
+\item ShuffleNet – focuses on reducing computational cost through channel shuffling and grouped operations, making it suitable for low-power hardware
+\item ResNet18 – utilizes residual connections to facilitate deeper feature learning while maintaining a relatively compact structure, serving as a reference baseline
 \end{itemize}
-Each model was trained and evaluated on the prepared semiconductor defect dataset under identical experimental conditions.
+
+All models were trained and evaluated using the same semiconductor defect dataset under uniform experimental settings to ensure a fair and consistent comparison.
 
 \subsection{Edge Deployable Model Selection Criteria}
 The selected models were chosen based on the following criteria:
@@ -234,7 +234,8 @@ Models should support low-latency classification for inline semiconductor inspec
 \subsection{Model 1: MobileNetV2}
 Architecture Overview
 
-MobileNetV2 is a lightweight convolutional neural network specifically designed for mobile and edge devices. It introduces:
+MobileNetV2 is a compact convolutional neural network architecture optimized for edge and embedded platforms. It incorporates:
+
 \begin{itemize}
    \item Depthwise Separable Convolution
    \item Inverted Residual Blocks
@@ -242,13 +243,13 @@ MobileNetV2 is a lightweight convolutional neural network specifically designed 
 \end{itemize}
 These innovations significantly reduce computation while preserving accuracy.
 
-\subsubsection{Why MobilnetV2 is selected}
+\subsection{Why MobilnetV2 is selected}
 MobileNetV2 is highly suitable for semiconductor edge inspection because it offers:
 \begin{itemize}
 \item Low memory footprint
 \item Fast inference speed
 \item Strong classification performance
-\item Efficient deployment on Raspberry Pi
+\item Efficient deployment on Raspberry Pi \& other embedded devices
 \end{itemize}
 
 \subsubsection{ Training Methodology}
@@ -272,7 +273,7 @@ ShuffleNet is an ultra-lightweight CNN architecture developed for extremely reso
 \item Efficient feature reuse
 \end{itemize}
 
-These techniques reduce complexity while maintaining useful feature extraction capability.
+These reduce complexity while maintaining useful feature extraction capability.
 
 \subsection{Why Shufflenet is selected}
 
@@ -294,7 +295,7 @@ The pretrained ShuffleNet model was initialized using ImageNet weights. The orig
 \item Entire network fine-tuned with low learning rate
 \end{itemize}
 
-\subsection{Model 3:ResNet18 }
+\subsection{Model3:ResNet18 }
 \subsubsection{Architecture Overview}
 
 ResNet18 is a residual convolutional neural network containing 18 layers. It uses skip connections that help train deeper networks by avoiding vanishing gradients.
@@ -319,7 +320,7 @@ A pretrained ResNet18 model was used. The final fully connected layer was replac
 \item Lower learning rate used for stable convergence
 \end{itemize}
 
-\section{Model Architecture and Training Methodology}
+\section{Training Methodology}
 Deep learning models trained in research environments are usually developed on high-performance systems equipped with GPUs, large memory, and powerful processors. However, in practical semiconductor manufacturing environments, deploying these models directly on edge hardware such as Raspberry Pi, industrial embedded controllers, or low-power CPUs presents several challenges.
 
 Edge devices operate under limited computational resources, restricted memory, lower power budgets, and real-time response requirements. Therefore, a trained model must be optimized before deployment so that it can perform efficient inference without significantly compromising classification accuracy.
@@ -340,14 +341,15 @@ Although a model may perform well during training, direct deployment of an unopt
 In semiconductor production lines, such delays can interrupt inspection flow and reduce throughput. Therefore, optimization is essential.
 
 \subsection{Quantization}
-Quantization is the process of reducing numerical precision of model weights and activations. Usually it reduces model size and computational cost.
+Quantization is the process of reducing numerical precision of model weights and activations. Usually, it reduces model size and computational cost.
 
 \subsubsection{Importance of quantization in our use case}
 \begin{itemize}
-    \item Faster Inference: nteger or lower-precision arithmetic is faster on many CPUs.
-    \item Lower Memory Usage: Smaller weights occpy less RAM
-    \item Reduced Storage Size: Compressed models are easier to deploy and transfer.
+\item \textbf{Improved Inference Efficiency:} Using reduced-precision representations allows computations to be executed more efficiently on standard processors, leading to faster inference times.
+\item \textbf{Lower Runtime Memory Demand:} Representing model parameters with fewer bits decreases the amount of memory required during execution, which is beneficial for constrained devices.
+\item \textbf{Compact Model Size:} Reducing numerical precision results in smaller model files, simplifying storage, transfer, and deployment on edge platforms.
 \end{itemize}
+
 
 Devices such as Raspberry Pi have limited RAM and CPU capability. Quantization helps run models more efficiently without needing expensive GPU hardware.
 
@@ -374,9 +376,9 @@ Train Model → Convert to ONNX → Apply Quantization → Run on Edge Device
 
 This provides:
 \begin{itemize}
-\item Smaller model
+\item Smaller model (Low memory footprint)
 \item Faster inference
-\item Lower RAM use
+\item Lower RAM usage
 \item Practical real-time deployment
 \end{itemize}
 
@@ -416,7 +418,7 @@ Used to confirm attention on visible fracture regions.
 
 \subsubsection{Malformed Via}
 
-Used to inspect whether the model localized deformed via/contact structures.
+Used to inspect whether the model localizes deformed via/contact structures.
 
 \subsubsection{Open}
 
@@ -426,7 +428,8 @@ Used to verify focus on broken conductive paths or missing links.
 
 Used to confirm attention on bridging or unintended connected regions.
 
-\subsection{How Grad-CAM Was Used in This Project}
+\subsection{Interpretation of Model Failures through Grad-CAM Visualization}
+
 For wrongly predicted samples, Grad-CAM was used to understand the reason for failure.
 
 It helped identify whether the model:

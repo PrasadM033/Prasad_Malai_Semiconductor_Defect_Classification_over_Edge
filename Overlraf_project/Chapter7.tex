@@ -1,0 +1,11 @@
+\chapter{Conclusion}
+This thesis presented an Edge-AI-based framework for semiconductor defect classification aimed at overcoming the limitations of centralized inspection systems such as latency, bandwidth dependency, and higher infrastructure cost. A hybrid dataset comprising public and synthetic defect images was prepared to address limited access to industrial semiconductor data. Five important defect categories, namely LER, Crack, Malformed Via, Open, and Short, were considered.
+
+Three lightweight deep learning architectures were trained and evaluated using standard classification metrics along with deployment oriented measures such as latency and memory usage. The experimental results demonstrated that lightweight models can achieve competitive classification performance while remaining suitable for resource constrained edge platforms.
+
+Exporting the trained models to the ONNX format enabled smoother execution across different hardware platforms and reduced dependency on the original training framework. This contributed to more efficient inference, particularly in edge-based environments. In addition, Grad-CAM visualization was used to examine model behavior, confirming that the networks primarily attended to defect-specific regions, which improves confidence in the reliability of the predictions.
+
+Among the evaluated lightweight architectures, MobileNetV2 demonstrated the most balanced performance in terms of memory usage, inference speed, and overall suitability for edge deployment.
+
+Overall, this research demonstrates that Edge-AI can play a significant role in next-generation semiconductor manufacturing by enabling faster, scalable, and intelligent defect analysis. Future work may extend this study toward hybrid edge-cloud deployment frameworks and validation using larger industrial datasets.
+
